@@ -1,0 +1,827 @@
+/*
+ * Tweaks for content exported from the Air Quality Portal.
+ */
+
+/* ------------------------------------------------------------------
+ * General tables
+ * ------------------------------------------------------------------ */
+
+/* The "Direct access to viewers and tables" page carries a five-column
+ * table of long Tableau URLs. Let it scroll sideways rather than clip,
+ * and let URLs wrap so the table remains readable at narrow widths.
+ */
+article table.docutils {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+article table.docutils td,
+article table.docutils th {
+  vertical-align: top;
+}
+
+article table.docutils td a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Notes that stand in for an embedded viewer. */
+article .admonition.note {
+  font-size: 0.95em;
+}
+
+/* ------------------------------------------------------------------
+ * Gallery of viewers and dashboards
+ * ------------------------------------------------------------------ */
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.app-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: inherit !important;
+  text-decoration: none !important;
+  background: var(--color-background-secondary, #f6f8fa);
+  border: 1px solid var(--color-background-border, #d0d7de);
+  border-radius: 8px;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.app-card:hover,
+.app-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+}
+
+/* Fixed-ratio frame so cards line up regardless of screenshot height. */
+.app-card-shot {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 16 / 11;
+  background: #fff;
+}
+
+.app-card-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.app-card-missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 0.85em;
+  color: var(--color-foreground-muted, #656d76);
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 8px,
+    rgba(128, 128, 128, 0.09) 8px,
+    rgba(128, 128, 128, 0.09) 16px
+  );
+}
+
+.app-card-title {
+  padding: 0.6rem 0.75rem;
+  font-size: 0.9em;
+  font-weight: 500;
+  line-height: 1.35;
+  border-top: 1px solid var(--color-background-border, #d0d7de);
+}
+
+.app-card-badge {
+  display: inline-block;
+  margin-left: 0.4em;
+  padding: 0.05em 0.45em;
+  font-size: 0.75em;
+  font-weight: 600;
+  color: #8a5a00;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  background: #fff3cd;
+  border-radius: 999px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .app-card-shot {
+    background: #0d1117;
+  }
+
+  .app-card-badge {
+    color: #f0c674;
+    background: #4a3a12;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * Two-column viewer catalogue tables
+ * ------------------------------------------------------------------ */
+
+.viewer-list-table {
+  width: 100%;
+  margin: 1.5rem 0 2rem;
+  table-layout: fixed;
+}
+
+.viewer-list-table tbody,
+.viewer-list-table tr {
+  width: 100%;
+}
+
+.viewer-list-table td {
+  padding: 1.25rem;
+  vertical-align: middle;
+}
+
+.viewer-list-table td:first-child {
+  width: 60%;
+}
+
+.viewer-list-table td:last-child {
+  width: 40%;
+}
+
+.viewer-list-table h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.viewer-list-table p:last-child {
+  margin-bottom: 0;
+}
+
+.viewer-list-table img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--color-background-border, #d0d7de);
+  border-radius: 5px;
+}
+
+.viewer-list-table td:last-child a {
+  display: block;
+}
+
+/* Viewer image caption. */
+.viewer-list-table td:last-child p {
+  margin-top: 0.45rem;
+  margin-bottom: 0;
+  font-size: 0.82em;
+  color: var(--color-foreground-muted, #656d76);
+  text-align: center;
+}
+
+/* Stack the two columns on smaller screens. */
+@media screen and (max-width: 768px) {
+  .viewer-list-table {
+    table-layout: auto;
+  }
+
+  .viewer-list-table,
+  .viewer-list-table tbody,
+  .viewer-list-table tr,
+  .viewer-list-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .viewer-list-table td:first-child,
+  .viewer-list-table td:last-child {
+    width: 100%;
+  }
+
+  .viewer-list-table td:last-child {
+    padding-top: 0;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * Legal aspects page
+ * ------------------------------------------------------------------ */
+
+.legal-list {
+  margin-top: 1.5rem;
+}
+
+.legal-list li {
+  margin-bottom: 1.5rem;
+}
+
+.legal-list li p {
+  margin-top: 0.35rem;
+  margin-bottom: 0;
+}
+
+.legal-list li em {
+  color: var(--color-foreground-muted, #656d76);
+}
+
+/* ------------------------------------------------------------------
+ * Sidebar branding
+ * ------------------------------------------------------------------ */
+
+ /* Sidebar branding */
+.sidebar-brand {
+    text-align: center;
+}
+
+/* Smaller, left-aligned EEA logo. */
+.sidebar-logo {
+  display: block;
+  width: 120px;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* ------------------------------------------------------------------
+ * Landing page hero section
+ * ------------------------------------------------------------------ */
+
+.portal-subtitle {
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: normal;
+  color: #555;
+}
+
+.portal-banner-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 0;
+  margin-bottom: 0.9rem;
+  border-radius: 2px;
+}
+
+/* Quick links inspired by the text tabs on the former AQ Portal. */
+.landing-section-nav {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin: 0 0 1.25rem;
+}
+
+.landing-section-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.7rem;
+  padding: 0.5rem 0.65rem;
+  color: var(--color-foreground-primary, #30343b) !important;
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none !important;
+  background: var(--color-background-secondary, #f3f5f7);
+  border: 1px solid var(--color-background-border, #c9d0d7);
+  border-radius: 4px;
+  transition:
+    background-color 0.12s ease,
+    border-color 0.12s ease,
+    box-shadow 0.12s ease,
+    transform 0.12s ease;
+}
+
+.landing-section-nav a:hover,
+.landing-section-nav a:focus-visible {
+  background: var(--color-background-hover, #e4ebf2);
+  border-color: #6f879d;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+/* Landing page title */
+article h1:first-child {
+    margin-bottom: 0.1rem;
+}
+
+/* Welcome heading on landing page */
+.welcome-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+}
+
+/* Reporting panel and icon links on the landing page. */
+.landing-services-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.85fr) minmax(0, 2fr);
+  gap: 1.5rem;
+  align-items: start;
+  margin: 1.4rem 0 2.5rem;
+}
+
+.landing-reporting-card {
+  padding: 1.15rem;
+  background: #edf3fb;
+  border: 1px solid #c4d3e4;
+  border-left: 4px solid #557a9e;
+  border-radius: 5px;
+}
+
+.landing-reporting-card h2 {
+  margin: 0 0 1.1rem;
+  font-size: 1.08rem;
+}
+
+.reporting-detail,
+.reporting-countdown {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.reporting-countdown {
+  align-items: center;
+  margin-bottom: 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid #c4d3e4;
+}
+
+.landing-viewers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.landing-viewer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 128px;
+  padding: 0.9rem 0.55rem 0.75rem;
+  color: var(--color-foreground-primary, #30343b) !important;
+  text-align: center;
+  text-decoration: none !important;
+  background: var(--color-background-primary, #fff);
+  border: 1px solid var(--color-background-border, #ccd2d8);
+  border-radius: 5px;
+  transition:
+    background-color 0.12s ease,
+    border-color 0.12s ease,
+    box-shadow 0.12s ease,
+    transform 0.12s ease;
+}
+
+.landing-viewer-card:hover,
+.landing-viewer-card:focus-visible {
+  background: var(--color-background-secondary, #f5f7f9);
+  border-color: #6f879d;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.13);
+  transform: translateY(-2px);
+}
+
+.landing-viewer-card img {
+  display: block;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 0.65rem;
+  object-fit: contain;
+}
+
+.landing-viewer-card span {
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+/* Only the most recent portal announcement is repeated on the landing page. */
+.landing-latest-news {
+  margin: 1.15rem 0 1.4rem;
+  padding: 0.8rem 1.1rem;
+  background: var(--color-background-secondary, #f5f7f9);
+  border: 1px solid var(--color-background-border, #ccd2d8);
+  border-left: 4px solid #557a9e;
+  border-radius: 5px;
+}
+
+.latest-news-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.latest-news-heading h2 {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.latest-news-date {
+  flex: 0 0 auto;
+  color: var(--color-foreground-muted, #656d76);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.landing-latest-news h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.landing-latest-news p {
+  margin: 0 0 0.45rem;
+  font-size: 0.9rem;
+}
+
+.latest-news-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.25rem;
+  font-size: 0.86rem;
+}
+
+.latest-news-read {
+  font-weight: 600;
+}
+
+/* Compact contact strip beneath the landing-page services. */
+.landing-contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.65rem;
+  margin: -1rem 0 2.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.88rem;
+  background: var(--color-background-secondary, #f5f7f9);
+  border: 1px solid var(--color-background-border, #ccd2d8);
+  border-radius: 5px;
+}
+
+.landing-contact strong {
+  color: var(--color-foreground-primary, #30343b);
+}
+
+.landing-contact small {
+  flex-basis: 100%;
+  margin-left: 0;
+  color: var(--color-foreground-muted, #656d76);
+  font-size: 0.78rem;
+}
+
+/* Individual news titles are intentionally smaller than the portal title. */
+.news-article h1:first-child {
+  font-size: 1.85rem;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 900px) {
+  .landing-services-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .landing-section-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .landing-viewers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .latest-news-heading {
+    display: block;
+  }
+
+  .latest-news-date {
+    display: block;
+    margin-top: 0.25rem;
+  }
+
+  .landing-contact {
+    display: block;
+  }
+
+  .landing-contact > * {
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not([data-theme="light"]) .landing-reporting-card {
+    background: #1b2734;
+    border-color: #40566d;
+    border-left-color: #7fa4c7;
+  }
+
+  body:not([data-theme="light"]) .reporting-countdown {
+    border-top-color: #40566d;
+  }
+}
+
+body[data-theme="dark"] .landing-reporting-card {
+  background: #1b2734;
+  border-color: #40566d;
+  border-left-color: #7fa4c7;
+}
+
+body[data-theme="dark"] .reporting-countdown {
+  border-top-color: #40566d;
+}
+
+/* ------------------------------------------------------------------
+ * Reporting status box
+ * ------------------------------------------------------------------ */
+
+.reporting-icon {
+  display: inline-block;
+  width: 2rem;
+  font-size: 1.35rem;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 0.4rem;
+}
+
+/* --------------------------------------------------------------
+ * Countdown traffic light
+ * -------------------------------------------------------------- */
+
+.traffic-light {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 3px;
+  background: #444;
+  border-radius: 4px;
+  margin-right: 0.6rem;
+  margin-bottom: -2px;
+  vertical-align: middle;
+}
+
+.traffic-light .light {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #d8d8d8;
+}
+
+.traffic-green .light:nth-child(1) {
+  background: #2e7d32;
+}
+
+.traffic-orange .light:nth-child(2) {
+  background: #e67e00;
+}
+
+.traffic-red .light:nth-child(3) {
+  background: #c62828;
+}
+
+/* All three lights red once the deadline has passed */
+.traffic-all-red .light {
+    background: #c62828 !important;
+}
+
+/* =========================================================
+   AURA FAMILY NAVIGATION + REPORTING-GUIDE GREY SIDEBAR
+   ---------------------------------------------------------
+   Shell-only harmonisation with the AURA Reporting Guide.
+   This section deliberately targets Furo's left sidebar only.
+   ========================================================= */
+
+/* Reporting Guide grey scale mapped onto Furo's sidebar. */
+.sidebar-drawer {
+  --color-sidebar-background: #F4F4F4;
+  --color-sidebar-background-border: #D8D8D8;
+  --color-sidebar-brand-text: #202428;
+  --color-sidebar-caption-text: #68717A;
+  --color-sidebar-link-text: #68717A;
+  --color-sidebar-link-text--top-level: #68717A;
+  --color-sidebar-item-background: #F4F4F4;
+  --color-sidebar-item-background--current: #E3E3E3;
+  --color-sidebar-item-background--hover: #E8E8E8;
+  --color-sidebar-item-expander-background: transparent;
+  --color-sidebar-item-expander-background--hover: #E8E8E8;
+  --color-sidebar-search-text: #33383D;
+  --color-sidebar-search-background: #FFFFFF;
+  --color-sidebar-search-background--focus: #FFFFFF;
+  --color-sidebar-search-border: #C8C8C8;
+
+  background: #F4F4F4;
+  border-right-color: #D8D8D8;
+}
+
+/* Keep navigation greys identical in light, dark and auto modes. */
+body[data-theme="dark"] .sidebar-drawer,
+body:not([data-theme="light"]) .sidebar-drawer {
+  --color-sidebar-background: #F4F4F4;
+  --color-sidebar-background-border: #D8D8D8;
+  --color-sidebar-brand-text: #202428;
+  --color-sidebar-caption-text: #68717A;
+  --color-sidebar-link-text: #68717A;
+  --color-sidebar-link-text--top-level: #68717A;
+  --color-sidebar-item-background: #F4F4F4;
+  --color-sidebar-item-background--current: #E3E3E3;
+  --color-sidebar-item-background--hover: #E8E8E8;
+  --color-sidebar-item-expander-background: transparent;
+  --color-sidebar-item-expander-background--hover: #E8E8E8;
+  --color-sidebar-search-text: #33383D;
+  --color-sidebar-search-background: #FFFFFF;
+  --color-sidebar-search-background--focus: #FFFFFF;
+  --color-sidebar-search-border: #C8C8C8;
+}
+
+/* Current navigation item: same visual cue as the Reporting Guide. */
+.sidebar-tree .current-page > .reference,
+.sidebar-tree .current > .reference {
+  color: #202428 !important;
+  font-weight: 600;
+}
+
+.sidebar-tree .current-page > .reference {
+  border-left: 4px solid #666D73;
+}
+
+/* Furo search box, matched to the Reporting Guide. */
+.sidebar-search {
+  border: 1px solid #C8C8C8;
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+/* AURA family branding. */
+.aura-branding-furo {
+  margin: 0 0 12px;
+  background: #4F555A;
+  text-align: center;
+}
+
+.aura-brand-row {
+  padding: 12px 10px 8px;
+  white-space: nowrap;
+}
+
+.aura-eea-link {
+  display: inline-block;
+  vertical-align: middle;
+  width: 115px;
+  margin: 0 4px 0 0;
+  padding: 0;
+}
+
+.aura-eea-logo {
+  display: block !important;
+  width: 100px !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  object-fit: contain;
+}
+
+.aura-name {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 0 5px;
+  color: #FFFFFF;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.aura-sites {
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: right;
+}
+
+.aura-sites a,
+.aura-sites .aura-current {
+  display: block;
+  min-height: 31px;
+  padding: 6px 18px 6px 10px;
+  color: #FFFFFF !important;
+  text-decoration: none;
+}
+
+.aura-sites a:hover,
+.aura-sites a:focus-visible {
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF !important;
+}
+
+.aura-sites .aura-current {
+  background: #FFFFFF;
+  color: #202428 !important;
+  font-weight: 600;
+}
+
+/* Remove the old Furo project-title branding spacing because the AURA
+   family block now occupies that role. */
+.sidebar-sticky > .aura-branding-furo:first-child {
+  margin-top: 0;
+}
+
+/* ---------------------------------------------------------
+   AURA shared resources
+   --------------------------------------------------------- */
+
+.aura-resources {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.28);
+    text-align: right;
+}
+
+.aura-resources-label {
+    margin: 0 18px 5px 10px;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.aura-register-link {
+    display: block;
+    min-height: 31px;
+    padding: 6px 18px 6px 10px;
+    color: #FFFFFF !important;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    text-decoration: none !important;
+}
+
+.aura-register-link:hover,
+.aura-register-link:focus-visible {
+    background: rgba(255, 255, 255, 0.14);
+    color: #FFFFFF !important;
+}
+
+
+/* AURA REGISTER FINAL PORTAL FIX */
+.aura-resources {
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+}
+
+.aura-resources a.aura-register-link {
+    display: block !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 8px 18px 8px 10px !important;
+    color: #ffffff !important;
+    background: transparent !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.35 !important;
+    text-align: right !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    text-decoration: none !important;
+}
+
+.aura-resources a.aura-register-link:hover,
+.aura-resources a.aura-register-link:focus-visible {
+    background: rgba(255, 255, 255, 0.14) !important;
+    color: #ffffff !important;
+}
+
+/* Smaller title on AURA register page only */
+#correction-and-modification-register > h1 {
+    font-size: 1.45rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.5rem !important;
+}
